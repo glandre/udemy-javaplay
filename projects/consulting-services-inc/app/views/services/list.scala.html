@@ -1,36 +1,40 @@
 @(allServices : List[Service])
+
+@import helper._
+@import views.html.common._
+@import models._
+
 @main("Serviços da Consulting Inc") {
-	<h2>Todos os Serviços</h2>
-	<script>
-		function del(delUrl) {
-		$.ajax( {
-			url: delUrl,
-			type: 'DELETE',
-			success: function(results) {
-				location.reload();
-			}
-		});
-		}
-	</script>
-	<table>
-		<thead>
-			<tr>
-				<th>Código</th>
-				<th>Descrição</th>
-				<th>Valor</th>
-			</tr>
-		</thead>
-		<tbody>
-			@for(service <- allServices) {
-			<tr>
-				<td>@service.code</td>
-				<td>@service.description</td>
-				<td>@service.amount</td>
-				<td><button onclick="window.location='@routes.Services.info(service.code)';" value="edit">Editar</button></td>
-				<td><button onclick="del('@routes.Services.delete(service.code)');" value="delete">Apagar</button></td>
-			</tr>
-			}
-		</tbody>
-	</table>
-	<button onclick="window.location='@routes.Services.addService()';" value="new">Adicionar serviço</button>
+	<div class="page-header">
+		<h2>Todos os Serviços</h2>
+	</div>
+	<div class="panel panel-default">
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Código</th>
+					<th>Descrição</th>
+					<th class="col-right">Valor</th>
+					<th>Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for(service <- allServices) {
+				<tr>
+					<td><a href="@routes.ServiceController.editService(service.code)">@service.code</a></td>
+					<td>@service.description</td>
+					<td class="col-right">@{%.2f.format(service.amount)}</td>
+					<td>
+						<button type="button" class="btn-info" onclick="window.location='@routes.ServiceController.editService(service.code)';" value="edit">Editar</button>
+						<button type="button" class="btn-danger" onclick="del('@routes.ServiceController.delete(service.code)');" value="delete">Apagar</button>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="btn-group">
+		<button type="button" class="btn btn-success" onclick="window.location='@routes.ServiceController.addService()';" value="add">Adicionar serviço</button>
+	</div>
 }

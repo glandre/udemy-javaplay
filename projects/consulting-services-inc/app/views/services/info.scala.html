@@ -1,21 +1,46 @@
-@(serviceForm : Form[Service])(mode: String)
+@(serviceForm : play.data.Form[Service])(mode: String)
 @import helper._
+@import views.html.common._
+@import models._
+
+@implicitFieldConstructor = @{
+	b3.horizontal.fieldConstructor("col-md-2", "col-md-8")}
+
+@shortFC = @{
+	b3.horizontal.fieldConstructor("col-md-2", "col-md-3")}
 
 @main("Informações de Serviços") {
-	<h1>Informações de Serviços</h1>
-	@helper.form(action = routes.Services.save(mode)) {
-		<fieldset>
-			<legend>Serviço (@mode)</legend>
+
+	<div class="page-header">
+		<h2>Informações de Serviços</h2>
+	</div>
+
+	<fieldset>
+		<legend>Serviço (@mode)</legend>
+		@b3.form(action = routes.ServiceController.save(mode)) {
+			<input type="hidden" name="mode" value="@mode" />
 			@if(mode == "Adicionando") {
-				@helper.inputText(serviceForm.field("code"), '_label -> "Código")
+				@b3.text(serviceForm("code"), '_label -> "Código")
 			} else {
-				@helper.inputText(serviceForm.field("code"), '_label -> "Código",
+				@b3.text(serviceForm("code"), '_label -> "Código",
 						'readOnly -> "readOnly")
 			}
-			@helper.inputText(serviceForm.field("amount"), '_label -> "Valor")
-			@helper.textarea(serviceForm.field("description"), '_label -> "Descrição")
-		</fieldset>
-		<input type="submit" value="Salvar"/>
-	}
-	<button onclick="window.location='@routes.Services.list()';" value="cancel">Cancelar</button>
+			@b3.text(serviceForm("amount"), '_label -> "Valor",
+						'maxlength -> 15,
+						'placeholder -> "Valor")(shortFC, implicitly[Messages])
+			@b3.textarea(serviceForm("description"), '_label -> "Descrição",
+						'maxlength ->50,
+						'placeholder -> "Descrição")
+
+			<div class="form-group">
+				<div class="col-md-offset-3">
+					<input type="submit" class="btn btn-success" value="save" />
+					<button type="button" class="btn btn-warning" 
+						onclick="window.location='@routes.ServiceController.list()';" 
+						value="cancel">Cancelar</button>
+				</div>
+			</div>
+		}
+	</fieldset>
+	
 }

@@ -1,15 +1,6 @@
 package constants;
 
-public enum ModeConst {
-	ADD,
-	EDIT;
-
-	@Override
-	public String toString() {
-		switch(this) {
-			case ADD: return "Adicionando";
-			case EDIT: return "Editando";
-			default: return super.toString();
-		}
-	}
+public class ModeConst {
+	public static final String ADD = "Adicionando";
+	public static final String EDIT = "Editando";
 }

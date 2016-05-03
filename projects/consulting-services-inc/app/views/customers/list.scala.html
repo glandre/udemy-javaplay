@@ -1,0 +1,56 @@
+@(customerList : List[Customer])
+
+@import views.html.common._
+@import models._
+
+@main("Serviços da Consulting Inc") {
+	<div class="page-header">
+		<h2>Todos os Clientes</h2>
+	</div>
+	<div class="panel panel-default">
+		<table class="table table-striped table-bordered list-view-table">
+			<thead>
+				<tr class="list-view-header">
+					<th>Id.</th>
+					<th>Nome</th>
+					<th>Endereço</th>
+					<th>Cidade</th>
+					<th>Estado</th>
+					<th>CEP</th>
+					<th>Telefone</th>
+					<th>E-mail</th>
+					<th>Ação</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for(customer <- customerList) {
+				<tr>
+					<td><a href="@routes.CustomerController.editCustomer(customer.id)">@customer.id</a></td>
+					<td>@customer.name</td>
+					<td>@customer.address</td>
+					<td>@customer.city</td>
+					<td>@customer.state</td>
+					<td>@customer.postcode</td>
+					<td>@customer.phone</td>
+					<td>@customer.email</td>
+					<td>Ação</td>
+					<td>
+						<button type="button" class="btn-info" 
+								onclick="window.location='@routes.CustomerController.editCustomer(customer.id)';" 
+								value="edit">Editar</button>
+						<button type="button" class="btn-danger" 
+								onclick="del('@routes.CustomerController.delete(customer.id)');" 
+								value="delete">Apagar</button>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="btn-group">
+		<button type="button" class="btn btn-success" 
+				onclick="window.location='@routes.CustomerController.addCustomer()';" 
+				value="add">Adicionar cliente</button>
+	</div>
+}

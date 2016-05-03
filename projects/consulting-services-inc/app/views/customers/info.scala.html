@@ -1,0 +1,61 @@
+@(customerForm : play.data.Form[Customer])(mode: String)
+
+@import views.html.common._
+@import models._
+
+@implicitFieldConstructor = @{
+	b3.horizontal.fieldConstructor("col-md-2", "col-md-8")}
+
+@shortFC = @{
+	b3.horizontal.fieldConstructor("col-md-2", "col-md-4")}
+
+@main("Informações de Serviços") {
+
+	<div class="page-header">
+		<h2>Informações de Clientes</h2>
+	</div>
+
+	<fieldset>
+		<legend>Serviço (@mode)</legend>
+		@b3.form(action = routes.CustomerController.save(mode)) {
+			<input type="hidden" name="mode" value="@mode" />
+			@if(mode != "Adicionando") {
+				@b3.text(customerForm("id"), '_label -> "Id.",
+						'readOnly -> "readOnly")(shortFC, implicitly[Messages])
+			}
+
+			@b3.text(customerForm("name"), '_label -> "Nome",
+						'maxlength -> 200,
+						'placeholder -> "Nome")
+			@b3.textarea(customerForm("address"), '_label -> "Endereço",
+						'maxlength -> 1000,
+						'placeholder -> "Endereço")
+			@b3.text(customerForm("city"), '_label -> "Cidade",
+						'maxlength -> 50,
+						'placeholder -> "Cidade")
+			@b3.text(customerForm("state"), '_label -> "Estado",
+						'maxlength -> 50,
+						'placeholder -> "Estado")
+			@b3.text(customerForm("postcode"), '_label -> "CEP",
+						'maxlength -> 10,
+						'placeholder -> "CEP")(shortFC, implicitly[Messages])
+			@b3.text(customerForm("phone"), '_label -> "Telefone",
+						'maxlength -> 20,
+						'placeholder -> "(XXX) XXX-XXXX"),
+						'help -> "i.e. (123) 456-7890")(shortFC, implicitly[Messages])
+			@b3.text(customerForm("email"), '_label -> "E-mail",
+						'maxlength -> 50,
+						'placeholder -> "E-mail")
+
+			<div class="form-group">
+				<div class="col-md-offset-2">
+					<input type="submit" class="btn btn-success" value="save" />
+					<button type="button" class="btn btn-warning" 
+							onclick="window.location='@routes.CustomerController.list()';" 
+							value="cancel">Cancelar</button>
+				</div>
+			</div>
+		}
+	</fieldset>
+	
+}

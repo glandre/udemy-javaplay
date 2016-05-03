@@ -2,12 +2,23 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Home page
 GET     /                           controllers.HomeController.index()
-GET     /services                   controllers.Services.list()
-GET     /services/new               controllers.Services.addService()
-GET     /services/:code             controllers.Services.info(code: String)
-POST    /services/:mode             controllers.Services.save(mode: String)
-DELETE  /services/:code             controllers.Services.delete(code: String)
+
+# Service
+GET     /services                   controllers.ServiceController.list()
+GET     /services/new               controllers.ServiceController.addService()
+GET     /services/edit/:code        controllers.ServiceController.editService(code: String)
+POST    /services/save/:mode        controllers.ServiceController.save(mode: String)
+DELETE  /services/del/:code         controllers.ServiceController.delete(code: String)
+GET		/services/find/:code		controllers.ServiceController.findService(code: String)
+
+# Customers
+GET     /customers                   controllers.CustomerController.list()
+GET     /customers/new               controllers.CustomerController.addCustomer()
+GET     /customers/edit/:code        controllers.CustomerController.editCustomer(id: Long)
+POST    /customers/save/:mode        controllers.CustomerController.save(mode: String)
+DELETE  /customers/del/:code         controllers.CustomerController.delete(id: Long)
 
 # An example controller showing a sample home page
 #GET     /                           controllers.HomeController.index
