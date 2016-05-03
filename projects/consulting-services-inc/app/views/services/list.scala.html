@@ -1,0 +1,36 @@
+@(allServices : List[Service])
+@main("Serviços da Consulting Inc") {
+	<h2>Todos os Serviços</h2>
+	<script>
+		function del(delUrl) {
+		$.ajax( {
+			url: delUrl,
+			type: 'DELETE',
+			success: function(results) {
+				location.reload();
+			}
+		});
+		}
+	</script>
+	<table>
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Descrição</th>
+				<th>Valor</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for(service <- allServices) {
+			<tr>
+				<td>@service.code</td>
+				<td>@service.description</td>
+				<td>@service.amount</td>
+				<td><button onclick="window.location='@routes.Services.info(service.code)';" value="edit">Editar</button></td>
+				<td><button onclick="del('@routes.Services.delete(service.code)');" value="delete">Apagar</button></td>
+			</tr>
+			}
+		</tbody>
+	</table>
+	<button onclick="window.location='@routes.Services.addService()';" value="new">Adicionar serviço</button>
+}

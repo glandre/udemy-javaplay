@@ -1,0 +1,11 @@
+body {
+	padding-top: 30px;
+}
+
+.col-center {
+	text-align: center !important;
+}
+
+.col-right {
+	text-align: right !important;
+}

@@ -1,0 +1,21 @@
+@(serviceForm : Form[Service])(mode: String)
+@import helper._
+
+@main("Informações de Serviços") {
+	<h1>Informações de Serviços</h1>
+	@helper.form(action = routes.Services.save(mode)) {
+		<fieldset>
+			<legend>Serviço (@mode)</legend>
+			@if(mode == "Adicionando") {
+				@helper.inputText(serviceForm.field("code"), '_label -> "Código")
+			} else {
+				@helper.inputText(serviceForm.field("code"), '_label -> "Código",
+						'readOnly -> "readOnly")
+			}
+			@helper.inputText(serviceForm.field("amount"), '_label -> "Valor")
+			@helper.textarea(serviceForm.field("description"), '_label -> "Descrição")
+		</fieldset>
+		<input type="submit" value="Salvar"/>
+	}
+	<button onclick="window.location='@routes.Services.list()';" value="cancel">Cancelar</button>
+}
