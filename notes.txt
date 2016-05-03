@@ -1,0 +1,56 @@
+Model: https://www.playframework.com/documentation/1.3.x/model
+    - https://www.playframework.com/documentation/2.4.x/api/java/index.html?play/db/ebean/Model.html
+Ebean - ORM usado no Play Framework
+    - https://ebean-orm.github.io/
+    - https://www.playframework.com/documentation/2.4.x/JavaEbean	
+
+Controller, Actions and Results: 
+    - https://www.playframework.com/documentation/2.4.x/JavaActions
+
+HTTP Protocol documentation: https://www.w3.org/Protocols/rfc2616/rfc2616.html
+
+Play Framework API: https://www.playframework.com/documentation/2.4.x/api/java/index.html
+
+Views - Java Templates: https://www.playframework.com/documentation/2.4.x/JavaTemplates
+
+Forms: https://www.playframework.com/documentation/2.4.x/api/java/index.html
+FormFactory: http://stackoverflow.com/questions/36099834/the-method-formclasst-from-form-class-is-deprecated-in-play-framework
+
+jQuery: http://jquery.com/
+
+.sbt build definition: http://www.scala-sbt.org/0.13/docs/Basic-Def.html
+Library Dependencies: http://www.scala-sbt.org/0.13/docs/Library-Dependencies.html
+Cross-building: http://www.scala-sbt.org/0.13/docs/Cross-Build.html
+
+Requirements:
+
+JDK
+Typesafe Activator
+IDE or Editor, e.g.: IntelliJ IDEA, Eclipse, Netbeans or Sublime
+
+
+----
+
+Typesafe Activator:
+- Download it at: https://www.playframework.com/download
+- extract the zip file to some folder, e.g., /home/dev/activator
+
+- add this folder to the path:
+$ nano ~/.bashrc
+
+following line to the bottom of the file:
+export PATH=/home/dev/activator:$PATH
+
+- to test the activator type:
+$ activator ui
+
+---
+
+IntelliJ IDEA
+
+- Download de Community version
+- During the installation, install Scala Plugin
+- Setup the JDK
+
+Netbeans
+- see: https://www.playframework.com/documentation/1.0.1/ide
