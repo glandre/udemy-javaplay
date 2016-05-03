@@ -22,6 +22,8 @@ jQuery: http://jquery.com/
 Library Dependencies: http://www.scala-sbt.org/0.13/docs/Library-Dependencies.html
 Cross-building: http://www.scala-sbt.org/0.13/docs/Cross-Build.html
 
+adrianhunt - bootstrap dependency documentation: https://adrianhurt.github.io/play-bootstrap/
+
 Requirements:
 
 JDK

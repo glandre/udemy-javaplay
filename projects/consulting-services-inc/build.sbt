@@ -1,4 +1,4 @@
-name := """consulting-services-inc"""
+ name := """consulting-services-inc"""
 
 version := "1.0-SNAPSHOT"
 
@@ -12,14 +12,14 @@ libraryDependencies ++= Seq(
   jdbc,
   evolutions,
   ws,
-  "org.webjars" %% "webjars-play" % "2.5.0",
+  "org.webjars" %% "webjars-play" % "2.4.0",
   "org.webjars" % "bootstrap" % "3.3.6",
-  "com.adrianhurt" % "play-bootstrap3_2.11" % "0.4.4-P24",
+  "com.adrianhurt" %% "play-bootstrap" % "1.1-P25-B3-SNAPSHOT",
   filters
 )
 
 resolvers ++= Seq(
 	"Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/",
 	"Sonatype OSS Releases" at "https://oss.sonatype.org/content/repositories/releases/",
-	"Apache" at "http://repo1.maven.org/maven2"
+	"Apache" at "http://repo1.maven.org/maven2/"
 )
