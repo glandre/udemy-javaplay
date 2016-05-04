@@ -39,6 +39,14 @@ public class ServiceController extends Controller {
 		);
 	}
 
+	public Result findService(String code) {
+		Service service = Service.retrieve(code);
+		if(service == null) {
+			return ok("{}");
+		}
+		return ok(Json.toJson(service));
+	}
+
 	public Result save(String mode) {
 		Form<Service> filledForm = formFactory.form(Service.class).bindFromRequest();
 		if(filledForm.hasErrors()) {

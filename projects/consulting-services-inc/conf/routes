@@ -11,14 +11,22 @@ GET     /services/new               controllers.ServiceController.addService()
 GET     /services/edit/:code        controllers.ServiceController.editService(code: String)
 POST    /services/save/:mode        controllers.ServiceController.save(mode: String)
 DELETE  /services/del/:code         controllers.ServiceController.delete(code: String)
-GET		/services/find/:code		controllers.ServiceController.findService(code: String)
+#GET		/services/find/:code		controllers.ServiceController.findService(code: String)
 
 # Customers
-GET     /customers                   controllers.CustomerController.list()
-GET     /customers/new               controllers.CustomerController.addCustomer()
-GET     /customers/edit/:code        controllers.CustomerController.editCustomer(id: Long)
-POST    /customers/save/:mode        controllers.CustomerController.save(mode: String)
-DELETE  /customers/del/:code         controllers.CustomerController.delete(id: Long)
+GET     /customers                  controllers.CustomerController.list()
+GET     /customers/new              controllers.CustomerController.addCustomer()
+GET     /customers/edit/:id        	controllers.CustomerController.editCustomer(id: Long)
+POST    /customers/save/:mode       controllers.CustomerController.save(mode: String)
+DELETE  /customers/del/:id      	controllers.CustomerController.delete(id: Long)
+
+# Invoice
+GET     /invoices                   controllers.InvoiceController.list()
+GET     /invoices/new               controllers.InvoiceController.addInvoice()
+GET     /invoices/edit/:id        	controllers.InvoiceController.editInvoice(id: Long)
+POST    /invoices/save/:mode        controllers.InvoiceController.save(mode: String)
+POST    /customers/search	        controllers.InvoiceController.search()
+DELETE  /invoices/del/:id         	controllers.InvoiceController.delete(id: Long)
 
 # An example controller showing a sample home page
 #GET     /                           controllers.HomeController.index

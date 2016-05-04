@@ -23,7 +23,7 @@
 				<tr>
 					<td><a href="@routes.ServiceController.editService(service.code)">@service.code</a></td>
 					<td>@service.description</td>
-					<td class="col-right">@{%.2f.format(service.amount)}</td>
+					<td class="col-right">@{"%.2f".format(service.amount)}</td>
 					<td>
 						<button type="button" class="btn-info" onclick="window.location='@routes.ServiceController.editService(service.code)';" value="edit">Editar</button>
 						<button type="button" class="btn-danger" onclick="del('@routes.ServiceController.delete(service.code)');" value="delete">Apagar</button>

@@ -9,14 +9,14 @@
 @shortFC = @{
 	b3.horizontal.fieldConstructor("col-md-2", "col-md-4")}
 
-@main("Informações de Serviços") {
+@main("Informações de Clientes") {
 
 	<div class="page-header">
 		<h2>Informações de Clientes</h2>
 	</div>
 
 	<fieldset>
-		<legend>Serviço (@mode)</legend>
+		<legend>Cliente (@mode)</legend>
 		@b3.form(action = routes.CustomerController.save(mode)) {
 			<input type="hidden" name="mode" value="@mode" />
 			@if(mode != "Adicionando") {

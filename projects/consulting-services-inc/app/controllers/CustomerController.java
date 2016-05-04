@@ -11,7 +11,7 @@ import play.mvc.Result;
 import play.Logger;
 import java.util.List;
 
-import views.html.customer.*;
+import views.html.customers.*;
 
 public class CustomerController extends Controller {
 	private static Logger.ALogger logger = Logger.of(CustomerController.class);
@@ -36,7 +36,7 @@ public class CustomerController extends Controller {
 
 	public Result editCustomer(Long id) {
 		Customer customer = Customer.retrieve(id);
-		Form<Customer> form = formFactory.form(MyForm.class).fill(customer);
+		Form<Customer> form = formFactory.form(Customer.class).fill(customer);
 	    return ok(
 	        info.render(form, ModeConst.EDIT + ": " + customer.name)
 	    );
@@ -44,7 +44,7 @@ public class CustomerController extends Controller {
 
 	public Result save(String mode) {
 
-		Form<Customer> form = formFactory.form(MyForm.class).bindFromRequest();
+		Form<Customer> form = formFactory.form(Customer.class).bindFromRequest();
 		if(form.hasErrors()) {
 		    logger.debug("Validação falhou");
 		    return badRequest(

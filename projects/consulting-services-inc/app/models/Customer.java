@@ -16,7 +16,7 @@ import play.data.validation.ValidationError;
 @Table(name="customer")
 public class Customer extends Model {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) 
+    @Id
     public Long id;
 
     @Constraints.Required(message = "required.message")
@@ -39,6 +39,9 @@ public class Customer extends Model {
     @Constraints.Required(message = "required.message")
     public String email;
 
+    @OneToMany(mappedBy="costumer", cascade=CascadeType.ALL)
+    public List<Invoice> invoiceList;
+
     public static Finder<Long, Customer> find = new Finder<Long, Customer>(Customer.class);
 
     private static String EMAIL_PATTERN = ""; // TODO
@@ -49,7 +52,7 @@ public class Customer extends Model {
 	}
 
 	public static Customer retrieve(Long id) {
-    	return find.byId(id.toString()); 
+    	return find.byId(id); 
     }
 
     public static boolean exists(Long id) {

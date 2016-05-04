@@ -1,0 +1,58 @@
+@(invoiceForm : play.data.Form[Invoice])(mode: String)
+
+@import helper._
+@import tags._
+@import views.html.common._
+@import models._
+
+@implicitFieldConstructor = @{
+	b3.horizontal.fieldConstructor("col-md-2", "col-md-8")}
+
+@selectFC = @{
+	b3.horizontal.fieldConstructor("col-md-2", "col-md-6")}
+
+@dateFC = @{
+	b3.horizontal.fieldConstructor("col-md-2", "col-md-3")}
+
+@main("Informações de Faturas") {
+
+	<div class="page-header">
+		<h2>Informações de Faturas</h2>
+	</div>
+
+	<fieldset>
+		<legend>Fatura (@mode)</legend>
+		@b3.form(action = routes.InvoiceController.save(mode)) {
+			@if(mode != "Adicionando") {
+				@b3.text(invoiceForm("id"), 
+					'_label -> "Id.",
+					'readOnly -> "readOnly")(selectFC, implicitly[Messages])
+			}
+
+			@b3.select(invoiceForm("customer.id"), 
+				options = options(Customer.options),
+				'_label -> "Cliente",
+				'_default -> "-- Selecionar Cliente --")(selectFC, implicitly[Messages])
+			<!--
+			@b3.text(invoiceForm("date"),
+				'_label -> "Data",
+				'maxlength -> 10,
+				'placeholder -> "dd/mm/yyyy")(dateFC, implicitly[Messages])
+			-->
+
+			@datePicker(invoiceForm("date"),
+				'_label -> "Data",
+				'placeholder -> "dd/mm/yyyy")(dateFC)
+				
+			<div class="form-group">
+				<div class="col-md-offset-2">
+					<input type="submit" class="btn btn-success" value="save" />
+					<button type="button" class="btn btn-warning" 
+							onclick="window.location='@routes.InvoiceController.list()';" 
+							value="cancel">Cancelar</button>
+				</div>
+			</div>
+		}
+	</fieldset>
+	
+}

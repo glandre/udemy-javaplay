@@ -1,0 +1,57 @@
+@(invoiceList : List[Invoice])(searchForm: play.data.Form[InvoiceSearchForm])
+
+@import helper._
+@import views.html.common._
+@import models._
+@import tags._
+
+@implicitFieldConstructor = @{
+	b3.horizontal.fieldConstructor("col-md-2", "col-md-8") }
+
+@main("Serviços da Consulting Inc") {
+	<div class="page-header">
+		<h2>Todos as Faturas</h2>
+	</div>
+
+	<div class="row">
+	@b3.form(action=routes.InvoiceController.search) {
+		@search(searchForm("name"), "Go", "Invoice Id or Customer Name")
+	}
+	</div>
+
+	
+	<table class="table table-striped table-bordered list-view-table">
+		<thead>
+			<tr class="list-view-header">
+				<th>Id. da Fatura</th>
+				<th>Nome do Cliente</th>
+				<th>Data</th>
+				<th>Ação</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for(invoice <- invoiceList) {
+			<tr>
+				<td><a href="@routes.InvoiceController.editInvoice(invoice.id)">@invoice.id</a></td>
+				<td>@invoice.customer.name</td>
+				<td>@invoice.date.format("dd-MM-yyyy")</td>
+				<td>
+					<button type="button" class="btn-info" 
+							onclick="window.location='@routes.InvoiceController.editInvoice(invoice.id)';" 
+							value="edit">Editar</button>
+					<button type="button" class="btn-danger" 
+							onclick="del('@routes.InvoiceController.delete(invoice.id)');" 
+							value="delete">Apagar</button>
+				</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+	
+	
+	<div class="btn-group">
+		<button type="button" class="btn btn-success" 
+				onclick="window.location='@routes.InvoiceController.addInvoice()';" 
+				value="add">Adicionar fatura</button>
+	</div>
+}
